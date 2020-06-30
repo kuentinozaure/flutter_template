@@ -33,7 +33,7 @@ jobs:
       # build macOS desktop version
       #  - run: flutter build macos
       # build Android version
-      - run: flutter build apk --release
+      - run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
       # This action will create a github release and optionally upload an artifact to it.
       # https://github.com/ncipollo/release-action
       - name: Create a Release APK
