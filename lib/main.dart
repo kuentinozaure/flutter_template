@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/components/album-component.dart';
 import 'package:flutter_template/core/homepage.dart';
 
 void main() => runApp(MyApp());

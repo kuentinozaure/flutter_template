@@ -2,9 +2,10 @@ import 'dart:convert';
 import 'package:flutter_template/model/album.dart';
 import 'package:http/http.dart' as http;
 
+String url = "https://jsonplaceholder.typicode.com/albums/";
 
 Future<Album> fetchAlbum() async {
-  final response = await http.get('https://jsonplaceholder.typicode.com/albums/1');
+  final response = await http.get(url+"");
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -18,7 +19,7 @@ Future<Album> fetchAlbum() async {
 }
 
 Future<List<Album>> getAlbums() async {
-  final response = await http.get('https://jsonplaceholder.typicode.com/albums/');
+  final response = await http.get(url);
 
   if (response.statusCode == 200) {
 
