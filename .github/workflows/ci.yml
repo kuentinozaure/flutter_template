@@ -31,7 +31,7 @@ jobs:
       - run: flutter  config --enable-windows-desktop
       - run: flutter pub get
       # build macOS desktop version
-      - run: flutter build macos --release
+      - run: flutter build macos
       # build Android version
       - run: flutter build apk --debug --split-per-abi
       # This action will create a github release and optionally upload an artifact to it.
