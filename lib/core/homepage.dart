@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/components/album-component.dart';
 import 'package:flutter_template/components/home-component.dart';
 import 'package:flutter_template/components/todo-component.dart';
 import 'package:flutter_template/core/navlink.dart';
@@ -14,10 +13,13 @@ class HomePageWidget extends StatefulWidget {
 class _HomePageWidgetState extends State<HomePageWidget> {
 
   int _selectedIndexBottomNavBar = 1;
-  // static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
   
   static List<Widget> _widgetOptions = <Widget>[
-    AlbumComponent(),
+    Text(
+      'Index 0: Album',
+      style: optionStyle,
+    ),
     HomePageComponent(),
     ToDoComponent(),
   ];
