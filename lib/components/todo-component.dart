@@ -13,23 +13,28 @@ class _ToDoComponentState extends State<ToDoComponent> {
 
     return FutureBuilder(
       future: getTodos(),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (context, snapshot) {
 
-        if (snapshot.hasData) {
+       if (snapshot.hasData) {
+         List<Todo> data = snapshot.data;
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            verticalDirection: VerticalDirection.down,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                    padding: EdgeInsets.all(1),
-                    child: dataTableToDo(snapshot.data)
+          return ListView.builder(
+            itemCount: data.length,
+
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(data[index].title, style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                )),
+
+                subtitle: Text(data[index].id.toString()),
+                leading: Icon(
+                  Icons.work,
+                  color: Colors.blue[500],
                 ),
-              )
-            ],
-          );
+              );
+            });
 
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
@@ -37,57 +42,85 @@ class _ToDoComponentState extends State<ToDoComponent> {
         return Center(
           child: CircularProgressIndicator(),
         );
+        }
+       );
+      } }
+  //     future: getTodos(),
+  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+
+  //       if (snapshot.hasData) {
+
+  //         return Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           verticalDirection: VerticalDirection.down,
+  //           children: <Widget>[
+  //             Expanded(
+  //               child: Container(
+  //                   padding: EdgeInsets.all(1),
+  //                   child: dataTableToDo(snapshot.data)
+  //               ),
+  //             )
+  //           ],
+  //         );
+
+  //       } else if (snapshot.hasError) {
+  //         return Text("${snapshot.error}");
+  //       }
+  //       return Center(
+  //         child: CircularProgressIndicator(),
+  //       );
           
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
 
-  // needed to build the datatable dynamicly
-  SingleChildScrollView dataTableToDo(List<Todo> listOfTodos) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: DataTable(
-          sortColumnIndex: 0,
-          showCheckboxColumn: false,
-          columns: [
-            DataColumn(
-                label: Text("User id"),
-                numeric: false,
-                tooltip: "User id"
-            ),
-            DataColumn(
-              label: Text("Title"),
-              numeric: false,
-              tooltip: "Title",
-            ),
+  // // needed to build the datatable dynamicly
+  // SingleChildScrollView dataTableToDo(List<Todo> listOfTodos) {
+  //   return SingleChildScrollView(
+  //     scrollDirection: Axis.vertical,
+  //     child: DataTable(
+  //         sortColumnIndex: 0,
+  //         showCheckboxColumn: false,
+  //         columns: [
+  //           DataColumn(
+  //               label: Text("User id"),
+  //               numeric: false,
+  //               tooltip: "User id"
+  //           ),
+  //           DataColumn(
+  //             label: Text("Title"),
+  //             numeric: false,
+  //             tooltip: "Title",
+  //           ),
 
-            DataColumn(
-              label: Text("Completed"),
+  //           DataColumn(
+  //             label: Text("Completed"),
               
-              tooltip: "Completed",
+  //             tooltip: "Completed",
 
-            ),
-          ],
+  //           ),
+  //         ],
 
-          rows: listOfTodos
-              .map(
-                (todo) => DataRow(
-                onSelectChanged: (b) {
-                  print(todo.id.toString());
-                },
-                cells: [
-                   DataCell(
-                      Text(todo.userId.toString())
-                  ),
-                  DataCell(
-                    Text(todo.title),
-                  ),
-                   DataCell(
-                    Checkbox(value: todo.completed, onChanged: null)
-                  ),
+  //         rows: listOfTodos
+  //             .map(
+  //               (todo) => DataRow(
+  //               onSelectChanged: (b) {
+  //                 print(todo.id.toString());
+  //               },
+  //               cells: [
+  //                  DataCell(
+  //                     Text(todo.userId.toString())
+  //                 ),
+  //                 DataCell(
+  //                   Text(todo.title),
+  //                 ),
+  //                  DataCell(
+  //                   Checkbox(value: todo.completed, onChanged: null)
+  //                 ),
 
-                ]),
-              ).toList(),
-        ),
-    );}
-}
+  //               ]),
+  //             ).toList(),
+  //       ),
+  //   );} }
+      

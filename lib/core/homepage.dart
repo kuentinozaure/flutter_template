@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/components/album-component.dart';
 import 'package:flutter_template/components/home-component.dart';
 import 'package:flutter_template/components/todo-component.dart';
 import 'package:flutter_template/core/navlink.dart';
@@ -16,10 +17,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold); 
   
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Album',
-      style: optionStyle,
-    ),
+    AlbumComponent(),
     HomePageComponent(),
     ToDoComponent(),
   ];
